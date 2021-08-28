@@ -28,6 +28,8 @@
   const surviveDiv = statsDiv.querySelector('.survive');
   const speedDiv = statsDiv.querySelector('.speed');
 
+  let endScreenShake;
+
   function initializeGame() {
     startTime = new Date();
     score = -1;
@@ -52,7 +54,8 @@
     elementDivs[randomElementId].classList.remove("hidden");
 
     game.classList.add("animate");
-    setTimeout(() => {
+    clearTimeout(endScreenShake);
+    endScreenShake = setTimeout(() => {
       game.classList.remove("animate");
     }, 500);
   }
