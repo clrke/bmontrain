@@ -1,9 +1,13 @@
 (() => {
   const ELEMENTS = {
     "KeyW": "water",
+    "ArrowUp": "water",
     "KeyA": "forest",
+    "ArrowLeft": "forest",
     "KeyD": "light",
+    "ArrowRight": "light",
     "KeyS": "fire",
+    "ArrowDown": "fire",
   };
 
   let startTime;
@@ -60,7 +64,7 @@
     }, 500);
   }
 
-  body.onkeypress = (e) => {
+  body.onkeydown = (e) => {
     const element = ELEMENTS[e.code];
 
     if (!element) return;
