@@ -24,8 +24,8 @@ body {
 }
 
 .element {
-  height: 44px;
-  width: 44px;
+  height: 92px;
+  width: 92px;
   background-size: contain;
 }
 
@@ -34,23 +34,23 @@ body {
 }
 
 .water {
-  left: 36px;
+  left: 72px;
   background-image: url("img/water.png");
 }
 
 .forest {
-  top: 36px;
+  top: 72px;
   background-image: url("img/forest.png");
 }
 
 .light {
-  top: 36px;
+  top: 72px;
   right: 0;
   background-image: url("img/light.png");
 }
 
 .fire {
-  left: 36px;
+  left: 72px;
   bottom: 0;
   background-image: url("img/fire.png");
 }
@@ -59,8 +59,8 @@ body {
   position: absolute;
   bottom: 24px;
   right: 24px;
-  width: 120px;
-  height: 120px;
+  width: 240px;
+  height: 240px;
 }
 
 .controls > * {
