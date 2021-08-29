@@ -16,8 +16,10 @@
 
   const body = document.querySelector('body');
   const game = body.querySelector('.game');
+  const controls = body.querySelector('.controls');
 
   const elementDivs = [...game.querySelectorAll('.element')];
+  const controlDivs = [...controls.querySelectorAll('.element')];
 
   const [waterDiv, forestDiv, lightDiv, fireDiv] = elementDivs;
   const ELEMENTS_MAP = {
@@ -64,11 +66,7 @@
     }, 500);
   }
 
-  body.onkeydown = (e) => {
-    const element = ELEMENTS[e.code];
-
-    if (!element) return;
-
+  function activateElement(element) {
     const elementDiv = ELEMENTS_MAP[element];
 
     if (gameOver) {
@@ -82,7 +80,22 @@
     scoreDiv.textContent = `${score} points`;
 
     setNewElement();
+  }
+
+  body.onkeydown = (e) => {
+    const element = ELEMENTS[e.code];
+
+    if (!element) return;
+
+    activateElement(element);
   };
+
+  controlDivs.forEach(control => {
+    const element = control.getAttribute('data-element');
+    control.addEventListener('click', () => {
+      activateElement(element);
+    });
+  });
 
   setNewElement();
 })();
