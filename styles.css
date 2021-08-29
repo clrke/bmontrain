@@ -26,8 +26,7 @@ body {
 .element {
   height: 44px;
   width: 44px;
-  border-radius: 100%;
-  border: 2px solid black;
+  background-size: contain;
 }
 
 .element.hidden {
@@ -36,24 +35,24 @@ body {
 
 .water {
   left: 36px;
-  background-color: blue;
+  background-image: url("img/water.png");
 }
 
 .forest {
   top: 36px;
-  background-color: green;
+  background-image: url("img/forest.png");
 }
 
 .light {
   top: 36px;
   right: 0;
-  background-color: gold;
+  background-image: url("img/light.png");
 }
 
 .fire {
   left: 36px;
   bottom: 0;
-  background-color: red;
+  background-image: url("img/fire.png");
 }
 
 .controls {
