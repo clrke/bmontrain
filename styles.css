@@ -77,6 +77,10 @@ body {
   right: 8px;
 }
 
+.tools .share {
+  cursor: pointer;
+}
+
 .controls {
   position: absolute;
   bottom: 24px;
