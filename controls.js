@@ -1,4 +1,23 @@
 (() => {
+  const shareData = {
+    title: "Binamon Run Training",
+    text: "Practice your fingers through this lite web-based version of Binamon Run!",
+    url: "https://clrke.github.io/bmontrain/",
+  }
+
+  const btn = document.querySelector(".tools .share");
+  const resultPara = document.querySelector(".result");
+
+  // Must be triggered some kind of "user activation"
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.share(shareData)
+      alert("Shared successfully!");
+    } catch(err) {
+      console.log("Share error!", err);
+    }
+
+  });
   const ELEMENTS = {
     "KeyW": "water",
     "ArrowUp": "water",

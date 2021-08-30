@@ -71,6 +71,12 @@ body {
   width: 40px;
 }
 
+.tools {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
 .controls {
   position: absolute;
   bottom: 24px;
