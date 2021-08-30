@@ -1,6 +1,7 @@
 # Binamon Run Training
 
-This project is for Binamon players who want to hone their skills with the Binamon Run game.
+This project is for Binamon players who want to hone their skills with the Binamon Run game. 
+https://clrke.github.io/bmontrain/
 
 ## Controls
 
