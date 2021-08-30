@@ -9,12 +9,21 @@
   const resultPara = document.querySelector(".result");
 
   // Must be triggered some kind of "user activation"
-  btn.addEventListener('click', async () => {
+  btn.addEventListener("click", async () => {
     try {
       await navigator.share(shareData)
       alert("Shared successfully!");
     } catch(err) {
-      console.log("Share error!", err);
+      const copyText = document.querySelector(".url-copy");
+      copyText.value = `${shareData.text} ${shareData.url}`;
+
+      /* Select the text field */
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+      /* Copy the text inside the text field */
+      navigator.clipboard.writeText(copyText.value);
+      btn.textContent = "Copied!";
     }
 
   });
@@ -33,12 +42,12 @@
   let score;
   let gameOver = true;
 
-  const body = document.querySelector('body');
-  const game = body.querySelector('.game');
-  const controls = body.querySelector('.controls');
+  const body = document.querySelector("body");
+  const game = body.querySelector(".game");
+  const controls = body.querySelector(".controls");
 
-  const elementDivs = [...game.querySelectorAll('.element')];
-  const controlDivs = [...controls.querySelectorAll('.element')];
+  const elementDivs = [...game.querySelectorAll(".element")];
+  const controlDivs = [...controls.querySelectorAll(".element")];
 
   const [waterDiv, forestDiv, lightDiv, fireDiv] = elementDivs;
   const ELEMENTS_MAP = {
@@ -48,10 +57,10 @@
     "fire": fireDiv,
   };
 
-  const scoreDiv = game.querySelector('.score');
-  const statsDiv = game.querySelector('.stats');
-  const surviveDiv = statsDiv.querySelector('.survive');
-  const speedDiv = statsDiv.querySelector('.speed');
+  const scoreDiv = game.querySelector(".score");
+  const statsDiv = game.querySelector(".stats");
+  const surviveDiv = statsDiv.querySelector(".survive");
+  const speedDiv = statsDiv.querySelector(".speed");
 
   let endScreenShake;
 
@@ -59,8 +68,8 @@
     startTime = new Date();
     score = -1;
     gameOver = false;
-    surviveDiv.textContent = '';
-    speedDiv.textContent = '';
+    surviveDiv.textContent = "";
+    speedDiv.textContent = "";
   }
 
   function endGame() {
@@ -110,8 +119,8 @@
   };
 
   controlDivs.forEach(control => {
-    const element = control.getAttribute('data-element');
-    control.addEventListener('click', () => {
+    const element = control.getAttribute("data-element");
+    control.addEventListener("click", () => {
       activateElement(element);
     });
   });
