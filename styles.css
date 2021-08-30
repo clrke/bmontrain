@@ -60,6 +60,15 @@ body {
   position: absolute;
   top: 8px;
   left: 8px;
+  display: flex;
+}
+
+.credits > * {
+  margin: 4px;
+}
+
+.credits .logo {
+  width: 40px;
 }
 
 .controls {
