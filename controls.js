@@ -25,8 +25,8 @@
       navigator.clipboard.writeText(copyText.value);
       btn.textContent = "Copied!";
     }
-
   });
+
   const ELEMENTS = {
     "KeyW": "water",
     "ArrowUp": "water",
