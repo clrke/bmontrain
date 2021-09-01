@@ -8,7 +8,6 @@
   const btn = document.querySelector(".tools .share");
   const resultPara = document.querySelector(".result");
 
-  // Must be triggered some kind of "user activation"
   btn.addEventListener("click", async () => {
     try {
       await navigator.share(shareData)
@@ -17,11 +16,9 @@
       const copyText = document.querySelector(".url-copy");
       copyText.value = `${shareData.text} ${shareData.url}`;
 
-      /* Select the text field */
       copyText.select();
       copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
-      /* Copy the text inside the text field */
       navigator.clipboard.writeText(copyText.value);
       btn.textContent = "Copied!";
     }
