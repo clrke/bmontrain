@@ -5,10 +5,12 @@
     url: "https://clrke.github.io/bmontrain/",
   }
 
-  const btn = document.querySelector(".tools .share");
-  const resultPara = document.querySelector(".result");
+  const toolsDiv = document.querySelector(".tools");
+  const shareButton = toolsDiv.querySelector(".share");
+  const shouldShakeCheckbox = toolsDiv.querySelector("input.should-shake");
+  const shouldOffsetCheckbox = toolsDiv.querySelector("input.should-offset");
 
-  btn.addEventListener("click", async () => {
+  shareButton.addEventListener("click", async () => {
     try {
       await navigator.share(shareData)
       alert("Shared successfully!");
@@ -54,6 +56,17 @@
     "fire": fireDiv,
   };
 
+  const ZOOM_TYPE_CHOICES = [
+    "top",
+    "left",
+    "right",
+    "bottom",
+    "top-left",
+    "top-right",
+    "bottom-left",
+    "bottom-right",
+  ];
+
   const scoreDiv = game.querySelector(".score");
   const statsDiv = game.querySelector(".stats");
   const surviveDiv = statsDiv.querySelector(".survive");
@@ -84,10 +97,19 @@
     const randomElementId = Math.floor(Math.random() * 4);
     elementDivs[randomElementId].classList.remove("hidden");
 
-    game.classList.add("animate");
+    const shouldShake = shouldShakeCheckbox.checked;
+    const shouldOffset = shouldOffsetCheckbox.checked;
+    const zoomType = ZOOM_TYPE_CHOICES[Math.floor(Math.random() * 8)];
+
+    if (shouldShake) game.classList.add("animate");
+    if (shouldOffset) game.classList.add(zoomType);
+
     clearTimeout(endScreenShake);
     endScreenShake = setTimeout(() => {
       game.classList.remove("animate");
+      ZOOM_TYPE_CHOICES.forEach(type => {
+        game.classList.remove(type);
+      });
     }, 500);
   }
 
