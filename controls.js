@@ -45,8 +45,12 @@
   const game = body.querySelector(".game");
   const controls = body.querySelector(".controls");
 
-  const elementDivs = [...game.querySelectorAll(".element")];
+  const elementsDiv = game.querySelector(".elements");
+  const elementDivs = [...elementsDiv.querySelectorAll(".element")];
   const controlDivs = [...controls.querySelectorAll(".element")];
+
+  let circleTimer;
+  const circleTimerTemplate = elementsDiv.querySelector(".circle-timer.template");
 
   const [waterDiv, forestDiv, lightDiv, fireDiv] = elementDivs;
   const ELEMENTS_MAP = {
@@ -72,6 +76,7 @@
   const surviveDiv = statsDiv.querySelector(".survive");
   const speedDiv = statsDiv.querySelector(".speed");
 
+  let circleTimerTimeout;
   let endScreenShake;
 
   function initializeGame() {
@@ -87,12 +92,28 @@
     const secondsSurvived = (new Date().getTime() - startTime) / 1000;
     surviveDiv.textContent = `You survived for ${secondsSurvived.toFixed(2)}s`;
     speedDiv.textContent = `Speed: ${(score / secondsSurvived).toFixed(2)} hits/sec`;
+    if (circleTimer) {
+      elementsDiv.removeChild(circleTimer);
+      circleTimer = null;
+    }
+    clearTimeout(circleTimerTimeout);
   }
 
   function setNewElement() {
     elementDivs.forEach(elementDiv => {
       elementDiv.classList.add("hidden");
     });
+
+    if (circleTimer) {
+      elementsDiv.removeChild(circleTimer);
+      circleTimer = null;
+    }
+    circleTimer = circleTimerTemplate.cloneNode();
+
+    circleTimer.classList.remove("template");
+    circleTimer.classList.remove("ongoing");
+
+    elementsDiv.append(circleTimer);
 
     const randomElementId = Math.floor(Math.random() * 4);
     elementDivs[randomElementId].classList.remove("hidden");
@@ -104,6 +125,8 @@
     if (shouldShake) game.classList.add("animate");
     if (shouldOffset) game.classList.add(zoomType);
 
+    circleTimer.classList.add("ongoing");
+
     clearTimeout(endScreenShake);
     endScreenShake = setTimeout(() => {
       game.classList.remove("animate");
@@ -111,6 +134,12 @@
         game.classList.remove(type);
       });
     }, 500);
+
+    clearTimeout(circleTimerTimeout);
+    circleTimerTimeout = setTimeout(() => {
+      game.classList.remove("ongoing");
+      endGame();
+    }, 1000);
   }
 
   function activateElement(element) {
