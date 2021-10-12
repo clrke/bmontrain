@@ -9,6 +9,7 @@
   const shareButton = toolsDiv.querySelector(".share");
   const shouldShakeCheckbox = toolsDiv.querySelector("input.should-shake");
   const shouldOffsetCheckbox = toolsDiv.querySelector("input.should-offset");
+  const hasCircleTimerCheckbox = toolsDiv.querySelector("input.has-circle-timer");
 
   shareButton.addEventListener("click", async () => {
     try {
@@ -95,8 +96,8 @@
     if (circleTimer) {
       elementsDiv.removeChild(circleTimer);
       circleTimer = null;
+      clearTimeout(circleTimerTimeout);
     }
-    clearTimeout(circleTimerTimeout);
   }
 
   function setNewElement() {
@@ -104,16 +105,18 @@
       elementDiv.classList.add("hidden");
     });
 
+    const hasCircleTimer = hasCircleTimerCheckbox.checked;
+
     if (circleTimer) {
       elementsDiv.removeChild(circleTimer);
       circleTimer = null;
     }
-    circleTimer = circleTimerTemplate.cloneNode();
 
-    circleTimer.classList.remove("template");
-    circleTimer.classList.remove("ongoing");
-
-    elementsDiv.append(circleTimer);
+    if (hasCircleTimer) {
+      circleTimer = circleTimerTemplate.cloneNode();
+      circleTimer.classList.remove("template");
+      elementsDiv.append(circleTimer);
+    }
 
     const randomElementId = Math.floor(Math.random() * 4);
     elementDivs[randomElementId].classList.remove("hidden");
@@ -125,7 +128,6 @@
     if (shouldShake) game.classList.add("animate");
     if (shouldOffset) game.classList.add(zoomType);
 
-    circleTimer.classList.add("ongoing");
 
     clearTimeout(endScreenShake);
     endScreenShake = setTimeout(() => {
@@ -135,11 +137,14 @@
       });
     }, 500);
 
-    clearTimeout(circleTimerTimeout);
-    circleTimerTimeout = setTimeout(() => {
-      game.classList.remove("ongoing");
-      endGame();
-    }, 1000);
+    if (hasCircleTimer) {
+      circleTimer.classList.add("ongoing");
+      clearTimeout(circleTimerTimeout);
+      circleTimerTimeout = setTimeout(() => {
+        game.classList.remove("ongoing");
+        endGame();
+      }, 1000);
+    }
   }
 
   function activateElement(element) {
