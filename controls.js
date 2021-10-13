@@ -5,7 +5,7 @@
     url: "https://clrke.github.io/bmontrain/",
   }
 
-  const ads = document.querySelector(".ads");
+  const ads = document.querySelector(".initial-screen");
   const closeAdButton = ads.querySelector(".close-initial-screen");
   const adTimer = closeAdButton.querySelector(".initial-screen-timer");
   let adTimerSeconds = 5;
