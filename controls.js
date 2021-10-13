@@ -5,6 +5,24 @@
     url: "https://clrke.github.io/bmontrain/",
   }
 
+  const ads = document.querySelector(".ads");
+  const closeAdButton = ads.querySelector(".close-ad");
+  const adTimer = closeAdButton.querySelector(".ad-timer");
+  let adTimerSeconds = 5;
+  const adCountdownInterval = setInterval(() => {
+    adTimerSeconds--;
+    adTimer.textContent = adTimerSeconds;
+
+    if (!adTimerSeconds) {
+      clearInterval(adCountdownInterval);
+      closeAdButton.disabled = false;
+    }
+  }, 1000);
+
+  closeAdButton.addEventListener('click', () => {
+    ads.style.display = 'none';
+  });
+
   const toolsDiv = document.querySelector(".tools");
   const shareButton = toolsDiv.querySelector(".share");
   const shouldShakeCheckbox = toolsDiv.querySelector("input.should-shake");
