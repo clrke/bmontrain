@@ -228,7 +228,7 @@ input[type=text] {
 
 .ads .ad-img {
   flex: 1;
-  background-image: url(img/ads/binamon-z1.png);
+  background-image: url(img/initial-screen/binamon-z1.png);
   background-repeat: no-repeat;
   background-size: contain;
   width: 100%;
