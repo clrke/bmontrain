@@ -210,7 +210,7 @@ input[type=text] {
   100% { height: 69px; width: 69px; }
 }
 
-.ads {
+.initial-screen {
   top: 0;
   left: 0;
   width: 100vw;
@@ -226,7 +226,7 @@ input[type=text] {
   box-sizing: border-box;
 }
 
-.ads .ad-img {
+.initial-screen .initial-screen-img {
   flex: 1;
   background-image: url(img/initial-screen/binamon-z1.png);
   background-repeat: no-repeat;

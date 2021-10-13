@@ -6,8 +6,8 @@
   }
 
   const ads = document.querySelector(".ads");
-  const closeAdButton = ads.querySelector(".close-ad");
-  const adTimer = closeAdButton.querySelector(".ad-timer");
+  const closeAdButton = ads.querySelector(".close-initial-screen");
+  const adTimer = closeAdButton.querySelector(".initial-screen-timer");
   let adTimerSeconds = 5;
   const adCountdownInterval = setInterval(() => {
     adTimerSeconds--;
