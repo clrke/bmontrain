@@ -226,6 +226,11 @@ input[type=text] {
   box-sizing: border-box;
 }
 
-.ads img {
-  max-height: 50%;
+.ads .ad-img {
+  flex: 1;
+  background-image: url(img/ads/binamon-z1.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  background-position: center;
 }
