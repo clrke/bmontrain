@@ -21,6 +21,8 @@
 
   closeAdButton.addEventListener('click', () => {
     ads.style.display = 'none';
+    setNewElement();
+    initializeGame();
   });
 
   const toolsDiv = document.querySelector(".tools");
@@ -107,15 +109,17 @@
   }
 
   function endGame() {
-    gameOver = true;
-    const secondsSurvived = (new Date().getTime() - startTime) / 1000;
-    surviveDiv.textContent = `You survived for ${secondsSurvived.toFixed(2)}s`;
-    speedDiv.textContent = `Speed: ${(score / secondsSurvived).toFixed(2)} hits/sec`;
-    if (circleTimer) {
-      elementsDiv.removeChild(circleTimer);
-      circleTimer = null;
-      clearTimeout(circleTimerTimeout);
+    if (!gameOver) {
+      const secondsSurvived = (new Date().getTime() - startTime) / 1000;
+      surviveDiv.textContent = `You survived for ${secondsSurvived.toFixed(2)}s`;
+      speedDiv.textContent = `Speed: ${(score / secondsSurvived).toFixed(2)} hits/sec`;
+      if (circleTimer) {
+        elementsDiv.removeChild(circleTimer);
+        circleTimer = null;
+        clearTimeout(circleTimerTimeout);
+      }
     }
+    gameOver = true;
   }
 
   function setNewElement() {
@@ -196,5 +200,5 @@
     });
   });
 
-  setNewElement();
+  // setNewElement();
 })();
