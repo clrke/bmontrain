@@ -19,11 +19,11 @@
     }
   }, 1000);
 
-  closeAdButton.addEventListener('click', () => {
+  // closeAdButton.addEventListener('click', () => {
     ads.style.display = 'none';
-    setNewElement();
-    initializeGame();
-  });
+    // setNewElement();
+    // initializeGame();
+  // });
 
   const toolsDiv = document.querySelector(".tools");
   const shareButton = toolsDiv.querySelector(".share");
@@ -200,5 +200,5 @@
     });
   });
 
-  // setNewElement();
+  setNewElement();
 })();
