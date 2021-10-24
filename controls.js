@@ -8,7 +8,7 @@
   const ads = document.querySelector(".initial-screen");
   const closeAdButton = ads.querySelector(".close-initial-screen");
   const adTimer = closeAdButton.querySelector(".initial-screen-timer");
-  let adTimerSeconds = 5;
+  let adTimerSeconds = 20;
   const adCountdownInterval = setInterval(() => {
     adTimerSeconds--;
     adTimer.textContent = adTimerSeconds;
@@ -19,11 +19,11 @@
     }
   }, 1000);
 
-  // closeAdButton.addEventListener('click', () => {
+  closeAdButton.addEventListener('click', () => {
     ads.style.display = 'none';
-    // setNewElement();
-    // initializeGame();
-  // });
+    setNewElement();
+    initializeGame();
+  });
 
   const toolsDiv = document.querySelector(".tools");
   const shareButton = toolsDiv.querySelector(".share");
